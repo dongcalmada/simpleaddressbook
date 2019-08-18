@@ -1,5 +1,6 @@
 <?php
 session_start();
+include '.config.php';
 include 'utilities.php';
 $mode = 'home';
 if (isset($_GET['mode'])) {

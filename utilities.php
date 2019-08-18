@@ -29,3 +29,13 @@ function html_bottom() {
 ';
 	return $html;
 }
+
+function dbconnect() {
+	$db = DB;
+	$user = DB_USER;
+	$pass = DB_PASS;
+	$host = DB_HOST;
+	$dbconnect = mysqli_connect($host,$user,$pass,$db);
+	$_SESSION['dblink'] = $dbconnect;
+	return $_SESSION['dblink'];
+}
