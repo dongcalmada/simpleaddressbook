@@ -18,13 +18,20 @@ switch ($mode) {
 		break;
 	case 'home':
 		// home page
-		include 'modes/home.php';
+		if (isLoggedIn()) {
+			include 'modes/home.php';
+		} else {
+			include 'modes/login.php';
+		}
 		break;
 	case 'add':
-		// form in add context
+		$_SESSION['operation'] = 'add';
+		include 'modes/form.php';
 		break;
 	case 'edit':
-		// form in edit context
+		$_SESSION['operation'] = 'edit';
+		$_SESSION['record_id'] = $_GET['id'];
+		include 'modes/form.php';
 		break;
 	case 'delete':
 		// record view with delete button

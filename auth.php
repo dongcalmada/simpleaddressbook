@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '.config.php';
 if (isset($_POST['user']) and isset($_POST['password'])) {
 	$admin_user = ADMIN;
@@ -7,5 +8,6 @@ if (isset($_POST['user']) and isset($_POST['password'])) {
 	$post_pass = strtoupper(sha1($_POST['password']));
 	if ($admin_user == $post_user and $admin_pass == $post_pass) {
 		$_SESSION['loggedin'] = TRUE;
+		header('Location: ' . SITE_URL);
 	}
 }

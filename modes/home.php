@@ -11,6 +11,7 @@ foreach ($fields as $f => $p) {
 	}
 }
 ?>
+<button><a href="<?php echo SITE_URL;?>/index.php?mode=add">Add</a></button>
 <div id="rows">
 	<table>
 		<thead>

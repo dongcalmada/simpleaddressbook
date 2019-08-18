@@ -11,3 +11,11 @@ label {
 	display :inline-block;
 	vertical-align: top;
 }
+
+table {
+	border: thin solid black;
+}
+
+table td {
+	padding: 10px;
+}

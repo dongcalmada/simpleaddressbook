@@ -29,6 +29,15 @@ $main_table_definition = array(
         'table_align'   => 'left',
         'required'      => 1
         ),
+    'address' => array(
+        'form_label'    => 'Address',
+        'form_type'     => 'input_text',
+        'select_source' => array(),
+        'form_col_size' => '700',
+        'table_head'    => 'Address',
+        'table_align'   => 'left',
+        'required'      => 1
+        ),
     'city' => array(
         'form_label'    => 'City',
         'form_type'     => 'select',
@@ -41,6 +50,15 @@ $main_table_definition = array(
         'table_head'    => 'City',
         'table_align'   => 'left',
         'required'      => 1
+        ),
+    'email' => array(
+        'form_label'    => 'Email Address',
+        'form_type'     => 'input_text',
+        'select_source' => array(),
+        'form_col_size' => '200',
+        'table_head'    => 'Email Address',
+        'table_align'   => 'left',
+        'required'      => 0
         ),
     'mobile' => array(
         'form_label'    => 'Mobile Number',

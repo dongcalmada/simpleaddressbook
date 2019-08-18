@@ -1,6 +1,5 @@
 <?php
 // Utility functions
-
 function html_top($title = SITE_NAME) {
 	$html = '<!DOCTYPE html>
 <html lang="en">
@@ -37,10 +36,8 @@ function dbconnect() {
 	$pass = DB_PASS;
 	$host = DB_HOST;
 
-	if (!isset($_SESSION['dblink']) OR $_SESSION['dblink'] <> FALSE) {
-		$dbconnect = mysqli_connect($host,$user,$pass,$db);
-		$_SESSION['dblink'] = $dbconnect;
-	}
+	$dbconnect = mysqli_connect($host,$user,$pass,$db);
+	$_SESSION['dblink'] = $dbconnect;
 
 	return $_SESSION['dblink'];
 }
@@ -55,4 +52,29 @@ function getRows() {
 		$rows[] = $row;
 	}
 	return $rows;
+}
+
+function isLoggedIn() {
+	$loggedin = FALSE;
+	if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == TRUE) {
+		$loggedin = TRUE;
+	}
+	return $loggedin;
+}
+
+function getRowByID($id) {
+	$table = MAIN_TABLE;
+	$query = "SELECT * FROM $table WHERE id = $id";
+	$result = mysqli_query($_SESSION['dblink'],$query);
+	$row = mysqli_fetch_assoc($result);
+	return $row;
+}
+
+function getNewID() {
+	$table = MAIN_TABLE;
+	$query = "SELECT MAX(id)+1 as id FROM $table";
+	$result = mysqli_query($_SESSION['dblink'],$query);
+	$row = mysqli_fetch_assoc($result);
+	$id = $row['id'];
+	return $id;
 }
