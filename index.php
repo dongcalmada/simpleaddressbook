@@ -1,10 +1,13 @@
 <?php
 session_start();
+include 'utilities.php';
 $mode = 'home';
 if (isset($_GET['mode'])) {
 	$mode = $_GET['mode'];
 }
 
+echo html_top();
+echo html_banner();
 switch ($mode) {
 	case 'home':
 		echo "home page here!";
@@ -22,3 +25,4 @@ switch ($mode) {
 		echo "view contact form here!";
 		break;
 }
+echo html_bottom();
