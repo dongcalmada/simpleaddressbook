@@ -42,15 +42,22 @@ function dbconnect() {
 	return $_SESSION['dblink'];
 }
 
-function getRows() {
+function getRows($searchword = null) {
 	$table = MAIN_TABLE;
 	$order_field = MAIN_TABLE_DEFAULT_ORDER_FIELD;
-	$query = "SELECT * FROM $table ORDER BY $order_field";
+	$query = "SELECT * FROM $table ";
+	if ($searchword) {
+		$query .= " WHERE firstname LIKE '%$searchword%' ";
+		$query .= " OR lastname LIKE '%$searchword%' ";
+		$query .= " OR address LIKE '%$searchword%' ";		
+	}
+	$query .= " ORDER BY $order_field";
 	$result = mysqli_query($_SESSION['dblink'],$query);
 	$rows = [];
 	while ($row = mysqli_fetch_assoc($result)) {
 		$rows[] = $row;
 	}
+	$_SESSION['search'] = null;
 	return $rows;
 }
 

@@ -1,7 +1,11 @@
 <?php
 include 'main_table_def.php';
 dbconnect();
-$rows = getRows();
+if ($_SESSION['search']) {
+	$rows = getRows($_SESSION['search']);	
+} else {
+	$rows = getRows();
+}
 $fields = $main_table_definition;
 
 $columnnames = [];
@@ -12,6 +16,13 @@ foreach ($fields as $f => $p) {
 }
 ?>
 <button><a href="<?php echo SITE_URL;?>/index.php?mode=add">Add</a></button>
+<form method="post" action="index.php">
+	Search: 
+	<input type="text" name="search">
+	<input type="submit" value="Go">
+	<input type="hidden" name="mode" value="search">
+</form>
+<button><a href="<?php echo SITE_URL;?>">All</a></button>
 <div id="rows">
 	<table>
 		<thead>
@@ -21,6 +32,8 @@ foreach ($fields as $f => $p) {
 					echo "<th>$c</th>";
 				}
 				?>
+				<th>Edit</th>
+				<th>Del</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,9 +42,17 @@ foreach ($fields as $f => $p) {
 				echo "<tr>";
 				foreach ($fields as $f => $p) {
 					if ($p['table_head']) {
-						echo "<td>".$row[$f]."</td>";
+						if ($f == 'id') {
+							$id = $row['id'];
+							$href = SITE_URL . "/index.php?mode=view&id=$id";
+							echo '<td><a href="'.$href.'">'.$id.'</a></td>';
+						} else {
+							echo "<td>".$row[$f]."</td>";
+						}
 					}
 				}
+				echo '<td><a href="'.SITE_URL.'/index.php?mode=edit&id='.$row['id'].'">Edit</a></td>';
+				echo '<td><a href="'.SITE_URL.'/index.php?mode=delete&id='.$row['id'].'">Del</a></td>';
 				echo "</tr>";
 			}
 			?>

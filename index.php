@@ -9,12 +9,20 @@ if (isset($_GET['mode'])) {
 	$mode = $_GET['mode'];
 }
 
+if (isset($_POST['search'])) {
+	$mode = 'search';	
+}
+
 echo html_top();
 echo html_banner();
 
 switch ($mode) {
 	case 'login':
 		include 'modes/login.php';
+		break;
+	case 'search':
+		$_SESSION['search'] = $_POST['search'];
+		include 'modes/home.php';
 		break;
 	case 'home':
 		// home page
