@@ -1,0 +1,13 @@
+#login {
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.row {
+	display:block;
+}
+label {
+	width:30%;
+	display :inline-block;
+	vertical-align: top;
+}
