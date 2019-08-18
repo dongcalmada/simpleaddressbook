@@ -34,10 +34,14 @@ switch ($mode) {
 		include 'modes/form.php';
 		break;
 	case 'delete':
-		// record view with delete button
+		$_SESSION['operation'] = 'delete';
+		$_SESSION['record_id'] = $_GET['id'];
+		include 'modes/view.php';
 		break;
 	case 'view':
-		// record view
+		$_SESSION['operation'] = 'view';
+		$_SESSION['record_id'] = $_GET['id'];
+		include 'modes/view.php';
 		break;
 }
 
