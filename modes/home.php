@@ -1,7 +1,7 @@
 <?php
 include 'main_table_def.php';
 dbconnect();
-if ($_SESSION['search']) {
+if (isset($_SESSION['search'])) {
 	$rows = getRows($_SESSION['search']);	
 } else {
 	$rows = getRows();

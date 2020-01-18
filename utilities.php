@@ -45,12 +45,15 @@ function dbconnect() {
 function getRows($searchword = null) {
 	$table = MAIN_TABLE;
 	$order_field = MAIN_TABLE_DEFAULT_ORDER_FIELD;
+	$search_fields = explode(",",MAIN_TABLE_SEARCH_FIELDS);
 	$query = "SELECT * FROM $table ";
 	if ($searchword) {
-		$query .= " WHERE firstname LIKE '%$searchword%' ";
-		$query .= " OR lastname LIKE '%$searchword%' ";
-		$query .= " OR address LIKE '%$searchword%' ";		
-	}
+		$query .= " WHERE ";
+		foreach ($search_fields as $sf) {
+			$query .= " $sf LIKE '%$searchword%' OR";
+		}
+		$query = rtrim($query,' OR');
+	}	
 	$query .= " ORDER BY $order_field";
 	$result = mysqli_query($_SESSION['dblink'],$query);
 	$rows = [];
