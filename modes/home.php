@@ -23,6 +23,7 @@ foreach ($fields as $f => $p) {
 	<input type="hidden" name="mode" value="search">
 </form>
 <button><a href="<?php echo SITE_URL;?>">All</a></button>
+<button><a href="<?php echo SITE_URL;?>/index.php?mode=logout">Logout</a></button>
 <div id="rows">
 	<table>
 		<thead>

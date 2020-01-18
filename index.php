@@ -20,6 +20,9 @@ switch ($mode) {
 	case 'login':
 		include 'modes/login.php';
 		break;
+	case 'logout':
+		include 'modes/logout.php';
+		break;
 	case 'search':
 		$_SESSION['search'] = $_POST['search'];
 		include 'modes/home.php';
